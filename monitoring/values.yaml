@@ -1,0 +1,52 @@
+
+alertmanager:
+  alertmanagerSpec:
+    replicas: 1
+
+grafana:
+  replicas: 1
+  # expect secret to be created
+  admin:
+    existingSecret: grafana-admin-creds
+    userKey: admin-user
+    passwordKey: admin-password
+
+  service:
+    type: ClusterIP
+    port: 80
+  persistence:
+    enabled: true
+    storageClassName: openebs-jiva-csi-default
+    accessModes:
+      - ReadWriteOnce
+    size: 15Gi
+
+prometheus:
+  prometheusSpec:
+    replicas: 1
+    remoteWriteDashboards: false
+    retention: 3d
+    retentionSize: "10GiB"
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: openebs-jiva-csi-default
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 50Gi
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 100m
+      limits:
+        memory: 5Gi
+        cpu: 2
+
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+
+
