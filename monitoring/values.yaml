@@ -14,14 +14,14 @@ alertmanager:
         cpu: 500m
         memory: 512Mi
 
-    storage:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: microk8s-hostpath
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 5Gi  
+    storageSpec: 
+          volumeClaimTemplate:
+            spec:
+              storageClassName: microk8s-hostpath
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 5Gi
 
 grafana:
   replicas: 1
