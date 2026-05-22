@@ -22,9 +22,19 @@ Just managing the gateway and secrets seperately for now
 kubectl apply -f secrets.yaml
 ```
 
+deploy to argo
+```bash
+kubectl apply -f monitoring-argo.yaml
+```
+
 ```bash
 kubectl apply -f gateway.yaml
 kubectl apply -f route.yaml
+```
+
+Deleting
+```bash
+microk8s kubectl delete application kube-prometheus-stack -n argocd
 ```
 
 ## Headlamp
