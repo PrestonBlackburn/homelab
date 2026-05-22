@@ -15,7 +15,6 @@ spec:
           # This '$values' variable points directly to the root of Source 2 below
           - $values/monitoring/values.yaml 
     
-    # Source 2: Your Personal Homelab Git Repo
     - repoURL: 'https://github.com/PrestonBlackburn/homelab.git'
       targetRevision: main
       ref: values 
