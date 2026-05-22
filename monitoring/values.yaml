@@ -85,3 +85,6 @@ kubeScheduler:
 nodeExporter:
   hostRootFsMount:
     enabled: false
+prometheus-node-exporter:
+  hostRootFsMount:
+    enabled: false
