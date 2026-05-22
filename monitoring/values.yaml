@@ -35,6 +35,8 @@ grafana:
     userKey: admin-user
     passwordKey: admin-password
 
+  lookupVolumeName: false
+
   service:
     type: ClusterIP
     port: 80
