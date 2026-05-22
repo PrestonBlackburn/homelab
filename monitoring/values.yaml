@@ -15,13 +15,13 @@ alertmanager:
         memory: 512Mi
 
     storageSpec: 
-          volumeClaimTemplate:
-            spec:
-              storageClassName: microk8s-hostpath
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 5Gi
+      volumeClaimTemplate:
+        spec:
+          storageClassName: microk8s-hostpath
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
 
 grafana:
   replicas: 1
