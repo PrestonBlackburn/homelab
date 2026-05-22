@@ -85,10 +85,6 @@ kubeScheduler:
 prometheus-node-exporter:
   hostRootFsMount:
     enabled: false
-  # Explicitly override arguments so it doesn't try to look at /host/root
-  extraArgs:
-    - --path.procfs=/host/proc
-    - --path.sysfs=/host/sys
 
 nodeExporter:
   hostRootFsMount:
