@@ -48,6 +48,9 @@ grafana:
       - ReadWriteOnce
     size: 15Gi
 
+  annotations:
+      argocd.argoproj.io/sync-options: Replace=false
+
 prometheus:
   prometheusSpec:
     replicas: 1
