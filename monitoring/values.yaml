@@ -3,8 +3,32 @@ alertmanager:
   alertmanagerSpec:
     replicas: 1
 
+    nodeSelector:
+      role: monitoring
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: microk8s-hostpath
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi  
+
 grafana:
   replicas: 1
+
+  nodeSelector:
+      role: monitoring
+
   # expect secret to be created
   admin:
     existingSecret: grafana-admin-creds
@@ -14,9 +38,10 @@ grafana:
   service:
     type: ClusterIP
     port: 80
+
   persistence:
     enabled: true
-    storageClassName: openebs-jiva-csi-default
+    storageClassName: microk8s-hostpath
     accessModes:
       - ReadWriteOnce
     size: 15Gi
@@ -26,23 +51,32 @@ prometheus:
     replicas: 1
     remoteWriteDashboards: false
     retention: 3d
-    retentionSize: "10GiB"
+    retentionSize: "20GB"
+
+    nodeSelector:
+      role: monitoring
+
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: openebs-jiva-csi-default
+          storageClassName: microk8s-hostpath
           accessModes:
             - ReadWriteOnce
           resources:
             requests:
               storage: 50Gi
+
     resources:
       requests:
         memory: 512Mi
         cpu: 100m
       limits:
-        memory: 5Gi
+        memory: 4Gi
         cpu: 2
+
+kube-state-metrics:
+  nodeSelector:
+    role: monitoring
 
 kubeControllerManager:
   enabled: false
