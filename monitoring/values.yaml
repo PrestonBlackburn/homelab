@@ -93,6 +93,3 @@ prometheus-node-exporter:
 nodeExporter:
   hostRootFsMount:
     enabled: false
-  extraArgs:
-    - --path.procfs=/host/proc
-    - --path.sysfs=/host/sys
