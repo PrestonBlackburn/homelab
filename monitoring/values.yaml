@@ -14,7 +14,7 @@ alertmanager:
         cpu: 500m
         memory: 512Mi
 
-    storageSpec: 
+    storage: 
       volumeClaimTemplate:
         spec:
           storageClassName: microk8s-hostpath
