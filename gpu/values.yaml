@@ -23,11 +23,12 @@ containerd:
   config: /var/snap/microk8s/common/args/containerd-template.toml
   socket: /var/snap/microk8s/common/run/containerd.sock
   
+hostPaths:
+  driverRoot: /
+  driverRootMountPropagation: HostToContainer
+
 operator:
   defaultRuntime: containerd
-  hostPaths:
-    driverRoot: /
-    driverRootMountPropagation: HostToContainer
   validator:
     repository: nvcr.io/nvidia/cloud-native
     image: gpu-operator-validator
