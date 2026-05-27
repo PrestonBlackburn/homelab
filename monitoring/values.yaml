@@ -6,6 +6,11 @@ alertmanager:
     nodeSelector:
       role: monitoring
 
+    podSecurityContext:
+      runAsUser: 65534
+      runAsGroup: 65534
+      fsGroup: 65534
+
     resources:
       requests:
         cpu: 100m
@@ -70,6 +75,11 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
+
+    securityContext:
+      runAsUser: 65534
+      runAsGroup: 65534
+      fsGroup: 65534
 
     resources:
       requests:
