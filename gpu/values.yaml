@@ -3,14 +3,7 @@ operator:
 driver:
   enabled: false
 toolkit:
-  enabled: true
-  env:
-    - name: CONTAINERD_SOCKET
-      value: /var/snap/microk8s/common/run/containerd.sock
-    - name: CONTAINERD_CONFIG
-      value: /var/snap/microk8s/current/args/containerd-template.toml
-    - name: CONTAINERD_RUNTIME_CLASS
-      value: nvidia
+  enabled: false
 devicePlugin:
   config:
     create: false
