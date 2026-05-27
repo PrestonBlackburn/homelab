@@ -14,6 +14,8 @@ toolkit:
       value: /var/snap/microk8s/common/args/containerd-template.toml
     - name: CONTAINERD_SOCKET
       value: /var/snap/microk8s/common/run/containerd.sock
+    - name: NVIDIA_DEV_ROOT
+      value: /
 
 daemonsets:
   nodeSelector:
