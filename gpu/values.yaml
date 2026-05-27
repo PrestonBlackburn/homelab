@@ -10,8 +10,6 @@ toolkit:
     - name: CONTAINER_RUNTIME
       value: containerd
     # Maps the internal config & socket logic to MicroK8s equivalents
-    - name: CONTAINERD_CONFIG
-      value: /var/snap/microk8s/current/args/containerd-template.toml
     - name: CONTAINERD_SOCKET
       value: /var/snap/microk8s/common/run/containerd.sock
     - name: NVIDIA_DEV_ROOT
@@ -20,10 +18,6 @@ toolkit:
 daemonsets:
   nodeSelector:
     kubernetes.io/hostname: userver2
-
-containerd:
-  config: /var/snap/microk8s/current/args/containerd-template.toml
-  socket: /var/snap/microk8s/common/run/containerd.sock
   
 hostPaths:
   rootFS: /var/snap/microk8s/common
