@@ -31,6 +31,7 @@ hostPaths:
 
 operator:
   defaultRuntime: containerd
+  runtimeClassName: nvidia-container-runtime
   validator:
     repository: nvcr.io/nvidia/cloud-native
     image: gpu-operator-validator
