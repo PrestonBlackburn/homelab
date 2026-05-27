@@ -32,12 +32,13 @@ hostPaths:
 operator:
   defaultRuntime: containerd
   runtimeClassName: nvidia-container-runtime
-  validator:
-    repository: nvcr.io/nvidia/cloud-native
-    image: gpu-operator-validator
-    env:
-      - name: RUN_NVIDIA_VALIDATIONS_DIR
-        value: /var/snap/microk8s/common/run/nvidia/validations
+
+validator:
+  repository: nvcr.io/nvidia/cloud-native
+  image: gpu-operator-validator
+  env:
+    - name: RUN_NVIDIA_VALIDATIONS_DIR
+      value: /var/snap/microk8s/common/run/nvidia/validations
 
 devicePlugin:
   config:
