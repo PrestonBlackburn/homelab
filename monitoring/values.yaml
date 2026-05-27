@@ -23,11 +23,6 @@ alertmanager:
             requests:
               storage: 5Gi
 
-      securityContext:
-            runAsUser: 65534
-            runAsGroup: 65534
-            fsGroup: 65534
-
 grafana:
   replicas: 1
 
@@ -75,11 +70,6 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
-              
-    securityContext:
-          runAsUser: 65534
-          runAsGroup: 65534
-          fsGroup: 65534
 
     resources:
       requests:
