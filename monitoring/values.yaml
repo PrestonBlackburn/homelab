@@ -23,6 +23,11 @@ alertmanager:
             requests:
               storage: 5Gi
 
+      securityContext:
+            runAsUser: 65534
+            runAsGroup: 65534
+            fsGroup: 65534
+
 grafana:
   replicas: 1
 
@@ -52,7 +57,7 @@ grafana:
       argocd.argoproj.io/sync-options: Replace=false
 
 prometheus:
-  prometheusSpec:
+  prometheusSpec:        
     replicas: 1
     remoteWriteDashboards: false
     retention: 3d
@@ -70,6 +75,11 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
+              
+    securityContext:
+          runAsUser: 65534
+          runAsGroup: 65534
+          fsGroup: 65534
 
     resources:
       requests:

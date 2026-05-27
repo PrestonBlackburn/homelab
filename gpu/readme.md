@@ -18,6 +18,10 @@ Create the namespace for the nvidia gpu operator
 kubectl create namespace gpu-operator
 ```
 
+```bash
+sudo microk8s enable gpu-integration
+```
+
 Label the nodes for the time-slice config
 ```bash
 kubectl apply -f time-slice-config.yaml
