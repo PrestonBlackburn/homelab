@@ -20,6 +20,7 @@ kubectl create namespace gpu-operator
 
 Label the nodes for the time-slice config
 ```bash
+kubectl apply -f time-slice-config.yaml
 kubectl label node <node-name> nvidia.com/device-plugin.config=rtx-2070
 ```
 
