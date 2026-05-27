@@ -24,7 +24,7 @@ containerd:
   socket: /var/snap/microk8s/common/run/containerd.sock
   
 hostPaths:
-  driverRoot: /usr
+  rootFS: /usr
 
 operator:
   defaultRuntime: containerd
