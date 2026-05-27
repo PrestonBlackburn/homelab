@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gpu-operator
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://helm.ngc.nvidia.com/nvidia'
+      chart: gpu-operator
+      targetRevision: 26.3.1
+      helm:
+        valueFiles:
+          - $values/gpu/values.yaml
+    - repoURL: 'https://github.com/PrestonBlackburn/homelab.git'
+      targetRevision: main
+      ref: values
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: gpu-operator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

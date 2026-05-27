@@ -1,0 +1,21 @@
+operator:
+  defaultRuntime: containerd
+driver:
+  enabled: false
+toolkit:
+  enabled: true
+devicePlugin:
+  # Time slicing config:
+  config:
+    create: true
+    default: "rtx-2070"
+    data:
+      rtx-2070: |-
+        version: v1
+        flags:
+          migStrategy: none
+        sharing:
+          timeSlicing:
+            resources:
+            - name: nvidia.com/gpu
+              replicas: 4

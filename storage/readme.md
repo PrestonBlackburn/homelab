@@ -67,3 +67,19 @@ Test with a new PVC
 kubectl apply -f pvc_nfs.yaml
 kubectl describe pvc test-nfs-claim
 ```
+
+
+# OpenEBS Setup
+[Source Docs](https://canonical.com/microk8s/docs/addon-openebs)
+
+*Note: 3 node minimum, so will revisit once I add another node*  
+
+```bash
+microk8s enable openebs
+```
+(may also need to enable microk8s community)
+
+View CSI drivers
+```bash
+kubectl get csidrivers
+```
