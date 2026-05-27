@@ -1,10 +1,19 @@
 driver:
   enabled: false
-toolkit:
+
+nfd:
   enabled: true
+
+toolkit:
   env:
-    - name: CONTAINER_RUNTIME
-      value: containerd
+    - name: CONTAINERD_CONFIG
+      value: /var/snap/microk8s/common/args/containerd-template.toml
+    - name: CONTAINERD_SOCKET
+      value: /var/snap/microk8s/common/run/containerd.sock
+    - name: CONTAINERD_RUNTIME_CLASS
+      value: nvidia
+    - name: CONTAINERD_SET_AS_DEFAULT
+      value: "true"
 
 daemonsets:
   nodeSelector:
