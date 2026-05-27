@@ -1,17 +1,23 @@
-operator:
-  defaultRuntime: containerd
 driver:
   enabled: false
 toolkit:
-   env:
-   - name: CONTAINERD_CONFIG
-     value: /var/snap/microk8s/current/args/containerd-template.toml
-   - name: CONTAINERD_SOCKET
-     value: /var/snap/microk8s/common/run/containerd.sock
-   - name: RUNTIME_CONFIG_SOURCE
-     value: "file=/var/snap/microk8s/current/args/containerd.toml"
+  enabled: true
+  env:
+    - name: CONTAINER_RUNTIME
+      value: containerd
+
+daemonsets:
+  nodeSelector:
+    kubernetes.io/hostname: userver2
+  
+operator:
+  defaultRuntime: containerd
+  validator:
+    repository: nvcr.io/nvidia/cloud-native
+    image: gpu-operator-validator
 
 devicePlugin:
   config:
-    create: false
+    create: false  
+    name: "rtx-2070"   
     default: "rtx-2070"
