@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rtx-2070
+  namespace: gpu-operator
+data:
+  rtx-2070: |-
+    version: v1
+    flags:
+      migStrategy: none
+    sharing:
+      timeSlicing:
+        resources:
+        - name: nvidia.com/gpu
+          replicas: 4

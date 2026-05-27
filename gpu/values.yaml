@@ -5,17 +5,6 @@ driver:
 toolkit:
   enabled: true
 devicePlugin:
-  # Time slicing config:
   config:
-    create: true
+    create: false
     default: "rtx-2070"
-    data:
-      rtx-2070: |-
-        version: v1
-        flags:
-          migStrategy: none
-        sharing:
-          timeSlicing:
-            resources:
-            - name: nvidia.com/gpu
-              replicas: 4
