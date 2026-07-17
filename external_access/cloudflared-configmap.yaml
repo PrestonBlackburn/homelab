@@ -1,0 +1,48 @@
+apiVersion: v1
+data:
+  config.yaml: |
+    tunnel: 2db98ae6-5898-4a87-b031-68acbece61bc
+    credentials-file: /etc/cloudflared/creds/credentials.json
+
+    # Serves the metrics server under /metrics and the readiness server under /ready
+    metrics: 0.0.0.0:2000
+
+    # TCP only, no UDP (QUIC)
+    no-quic: true
+    protocol: http2
+
+    # Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so
+    # autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly
+    # recommend using autoupdate.
+    no-autoupdate: true
+
+    # The `ingress` block tells cloudflared which local service to route incoming
+    # requests to. For more about ingress rules, see
+    # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress
+    #
+    # Remember, these rules route traffic from cloudflared to a local service. To route traffic
+    # from the internet to cloudflared, run `cloudflared tunnel route dns <tunnel> <hostname>`.
+    # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
+    ingress:
+    # The first rule proxies traffic to the httpbin sample Service defined in app.yaml
+    - hostname: test.prestonblackburn.com
+      service: http://personal-site-dev.personal.svc.cluster.local:8001
+    - hostname: prestonblackburn.com
+      service: http://personal-site-prod.personal.svc.cluster.local:8000
+    # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
+    # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
+    # in the connection from cloudflared to your local service, not from the internet to cloudflared.
+    # - hostname: hello.example.com
+    #   service: hello_world
+    # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
+    - service: http_status:404
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"config.yaml":"tunnel: 2db98ae6-5898-4a87-b031-68acbece61bc\ncredentials-file: /etc/cloudflared/creds/credentials.json\n\n# Serves the metrics server under /metrics and the readiness server under /ready\nmetrics: 0.0.0.0:2000\n\n# TCP only, no UDP (QUIC)\nno-quic: true\nprotocol: http2\n\n# Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so\n# autoupdate doesn't make sense in Kubernetes. However, outside of Kubernetes, we strongly\n# recommend using autoupdate.\nno-autoupdate: true\n\n# The `ingress` block tells cloudflared which local service to route incoming\n# requests to. For more about ingress rules, see\n# https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/ingress\n#\n# Remember, these rules route traffic from cloudflared to a local service. To route traffic\n# from the internet to cloudflared, run `cloudflared tunnel route dns \u003ctunnel\u003e \u003chostname\u003e`.\n# E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.\ningress:\n# The first rule proxies traffic to the httpbin sample Service defined in app.yaml\n- hostname: test.prestonblackburn.com\n  service: http://personal-site-dev.personal.svc.cluster.local:8001\n- hostname: prestonblackburn.com\n  service: http://personal-site-prod.personal.svc.cluster.local:8000\n# This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity\n# issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is\n# in the connection from cloudflared to your local service, not from the internet to cloudflared.\n# - hostname: hello.example.com\n#   service: hello_world\n# This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.\n- service: http_status:404\n"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"cloudflared","namespace":"cloudflared"}}
+  creationTimestamp: "2025-09-12T23:12:40Z"
+  name: cloudflared
+  namespace: cloudflared
+  resourceVersion: "16080082"
+  uid: 7d2fb5de-d170-4266-8961-44201c45d127

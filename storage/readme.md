@@ -1,3 +1,10 @@
+# Basic Storage
+
+Not ideal - see issues here: [Hostpath Storage](https://canonical.com/microk8s/docs/addon-hostpath-storage)
+```bash
+microk8s enable hostpath-storage
+```
+
 # NFS Setup
 We want to expose storage from one node to other nodes.  
 [Setup Docs](https://canonical.com/microk8s/docs/how-to-nfs)   
