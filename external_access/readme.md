@@ -33,6 +33,7 @@ kubectl rollout restart deployment cloudflared-deployment -n cloudflared
 
 Update cloudflare DNS
 ```bash
+cloudflared tunnel login
 cloudflared tunnel route dns preston-personal-site chirp.prestonblackburn.com
 ``` 
 
