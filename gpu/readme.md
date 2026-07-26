@@ -1,5 +1,7 @@
 # NVIDIA GPU Setup
 
+
+
 Make sure drivers are installed:  
 [Ubuntu Docs](https://ubuntu.com/server/docs/how-to/graphics/install-nvidia-drivers/)  
 

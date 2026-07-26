@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cuda-vector-add
+spec:
+  restartPolicy: OnFailure
+  runtimeClassName: nvidia  # Connects directly to the native MicroK8s runtime
+  containers:
+    - name: cuda-vector-add
+      image: "registry.k8s.io/cuda-vector-add:v0.1"
+      resources:
+        limits:
+          nvidia.com/gpu: 1  # Requests your RTX 2070
